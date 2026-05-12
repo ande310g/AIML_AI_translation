@@ -23,7 +23,7 @@ Same round-trip pipeline as above, but using **Qwen3-4B-Instruct-2507** running 
 Fine-tunes Qwen3-4B-Instruct-2507 on English↔Mandarin Chinese translation using **Unsloth + QLoRA** on a single T4. Trains two separate LoRA adapters — one for EN→ZH and one for ZH→EN — on ~32k Tatoeba sentence pairs. Uses ChatML formatting, cosine LR schedule, eval-loss-based best-checkpoint selection, and rsyncs checkpoints to Google Drive.
 
 ### `eval_finetuned_qwen.ipynb`
-Evaluates the fine-tuned Qwen3-4B LoRA adapters on round-trip EN→ZH→EN translation, comparing them directly against the base Qwen3-4B baseline from `AI_translation_qwen.ipynb`. Loads each adapter in turn, runs batched inference, strips Qwen3's `<think>` reasoning tags from outputs, and saves results for the consolidated evaluation.
+Evaluates the fine-tuned Qwen3-4B LoRA adapters on round-trip EN→ZH→EN translation, comparing them directly against the base Qwen3-4B baseline from `AI_translation_qwen.ipynb`. Loads each adapter in turn, runs batched inference, and saves results for the consolidated evaluation.
 
 ### `evaluate_all.ipynb`
 The final consolidated evaluation. Loads the round-trip results from all six model variants (Claude Haiku, Llama-3.2-3B base, Llama-3.2-3B-FT-WMT, Llama-3.2-3B-FT-Tatoeba, Qwen3-4B base, Qwen3-4B-FT-Tatoeba) and scores them with BLEU, chrF, BERTScore F1, and BLEURT. Produces side-by-side comparisons across languages and models — the answer to "did fine-tuning help, and how close does it get to Claude?"
